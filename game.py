@@ -16,7 +16,26 @@ def generate_code():
     # code = generate_code()
     return code
 
+# Function which allow the user to guess the colors
+def guess_code():
+    #.split(" ") does removing spaces in a string and putting them in a list eg. "G G G G" -> ["G", "G", "G", "G"]
+    while True:
+        guess = input("Guess: ").upper().split(" ")
 
+        if len(guess) != CODE_LENGTH:
+            print(f"You need to guess {CODE_LENGTH} colors.")
+            continue
+
+        #Check for colors in the colors list
+        for color in guess:
+            if color not in COLORS:
+                print(f"Invalid color: {color}. Try again")
+                break
+        # Just to check if you broke out of the for loop
+        else:
+            break
+    
+    return guess
 
 
 
