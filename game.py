@@ -37,6 +37,30 @@ def guess_code():
     
     return guess
 
+#Function which is going to check if the guessed color matches the real color
+def check_code(guess, real_code):
+    #Creates a dictionary to store the colors
+    color_counts = {}
+    #Varibles keeping track of colors in the correct position and incorrect position
+    correct_pos = 0
+    incorrect_pos = 0
+
+    for color in real_code:
+        if color not in color_counts:
+            color_counts[color] = 0
+        color_counts[color] += 1
+
+    #Find the colors which are in the correct position
+    for guess_color, real_color in zip(guess, real_code):
+        if guess_color == real_color:
+            correct_pos += 1 
+            color_counts[guess_color] -= 1
+
+
+    for guess_color, real_color in zip(guess, real_code):
+        if guess_color in color_counts and color_counts[guess_color] > 0:
+            
+
 
 
 
