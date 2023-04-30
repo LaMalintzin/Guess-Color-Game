@@ -50,19 +50,19 @@ def check_code(guess, real_code):
     correct_pos = 0
     incorrect_pos = 0
 
-    for color in range(len(real_code)):
+    for color in real_code:
         if color not in color_counts:
             color_counts[color] = 0
         color_counts[color] += 1
 
     #Find the colors which are in the correct position
-    for guess_color, real_color in zip(guess, real_code):
+    for i, (guess_color, real_color) in enumerate(zip(guess, real_code)):
         if guess_color == real_color:
             correct_pos += 1 
-            color_counts[guess_color] -= 1
+            color_counts[real_color] -= 1
 
 
-    for guess_color, real_color in zip(guess, real_code):
+    for guess_color in guess:
         if guess_color in color_counts and color_counts[guess_color] > 0:
             incorrect_pos += 1
             color_counts[guess_color] -= 1
@@ -75,7 +75,7 @@ def game():
     print(f"Welcome to mastermind, you have {TRIES} to guess the code...")
     print("The valid colors are", *COLORS)  
 
-    code = generate_code
+    code = generate_code()
     for attempts in range(1, TRIES + 1):
         guess = guess_code()
         correct_pos, incorrect_pos = check_code(guess, code)
@@ -92,9 +92,3 @@ def game():
 
 if __name__ == "__main__":
     game()
-
-    
-
-
-
-
